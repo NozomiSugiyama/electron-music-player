@@ -89,5 +89,6 @@ module.exports = {
   resolve: {
     extensions: [".css", ".js", ".jsx"],
     modules: ["src", "node_modules"]
-  }
+  },
+  target: "electron"
 }

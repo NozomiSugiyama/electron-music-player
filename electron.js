@@ -1,23 +1,26 @@
-const electron = require('electron');
-const {app} = electron;
-const {BrowserWindow} = electron;
+'use strict';
+const electron          = require('electron');
+const { app }           = electron;
+const { BrowserWindow } = electron;
 
-let win;
-app.on('ready', () => {
-  win = new BrowserWindow({
+let mainWindow;
+const createWindow = () => {
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     transparent: true,
     frame: false,
     resizable: false
   });
-  win.loadURL(`http://localhost:3000/`);
-  // win.webContents.openDevTools();
-  win.on('closed', () => win = null);
-});
+  mainWindow.loadURL(`file://${__dirname}/build/index.html`);
+  mainWindow.webContents.openDevTools();
+  mainWindow.on('closed', () => mainWindow = null);
+}
 
-app.on('window-all-closed', () => 
-  process.platform !== 'darwin' && app.quit()
+app.on('ready', () => createWindow());
+
+app.on('mainWindowdow-all-closed', () => 
+  process.platform !== 'darmainWindow' && app.quit()
 );
 
-app.on('activate', () => win === null && createWindow());
+app.on('activate', () => mainWindow === null && createWindow());
