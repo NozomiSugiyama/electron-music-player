@@ -1,5 +1,6 @@
-const { DefinePlugin } = require ("webpack")
-const path             = require("path")
+const { DefinePlugin }  = require ("webpack")
+const path              = require("path")
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -75,6 +76,10 @@ module.exports = {
             .map(x => ({["process.env." + x[0]]: JSON.stringify(x[1])}))
             .reduce((x, y) => Object.assign(x, y), {}),
     ),
+    new CopyWebpackPlugin([{
+      from: 'assets',
+      to: '.'
+    }])
   ],
   output: {
     filename  : "[name]",
