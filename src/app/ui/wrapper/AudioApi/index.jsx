@@ -2,13 +2,15 @@ import React       from "react"
 import { remote }  from 'electron'
 import fs          from 'fs' 
 import forceUpdate from "app/util/forceUpdate"
+import setState from "app/util/setState"
 
 
 export default class extends React.Component {
 
     componentWillMount() {
         this.setState({
-            audio: new Audio()
+            audio: new Audio(),
+            currentMusic: undefined
         })
     }
 
@@ -28,13 +30,18 @@ export default class extends React.Component {
 
         return render({
             currentAudio: this.state.audio,
+            currentMusic: this.state.currentMusic,
             audioApi: {
                 setMusic: async ({
                     music,
                 }) => {
-                    console.log(music.src)
                     this.state.audio.src = music.audio.src
-                    await forceUpdate(this)
+                    await setState(
+                        this,
+                        {
+                            currentMusic: music
+                        }
+                    )
 
                     return this.state.audio
                 }

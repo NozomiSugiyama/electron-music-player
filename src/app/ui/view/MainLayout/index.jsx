@@ -1,6 +1,5 @@
 import React      from "react"
-import { remote } from 'electron'
-import fs         from 'fs' 
+import classNames from "app/ui/view/MainLayout/classNames"
 
 export default class extends React.Component {
     componentWillMount() {}
@@ -12,14 +11,16 @@ export default class extends React.Component {
                 addBaseDir,
             },
             currentAudio,
+            currentMusic,
             audioApi: {
                 setMusic,
-                getAudio,
             }
         } = this.props
-        console.log(musicLibraries, "test")
+
         return(
-            <div>
+            <div
+                className={classNames.Host}
+            >
                 <span>test</span>
                 <button
                     onClick={async _ => {
@@ -40,7 +41,6 @@ export default class extends React.Component {
                                     key={i2}
                                     onClick={async _ => {
                                         await setMusic({music})
-                                        currentAudio.play()
                                     }}
                                 >
                                     {music.filePath}

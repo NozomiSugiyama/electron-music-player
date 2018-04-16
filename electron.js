@@ -6,10 +6,11 @@ const { BrowserWindow } = electron;
 let mainWindow;
 const createWindow = () => {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    transparent: true,
-    frame: false,
+    // width: 300,
+    width: 300,
+    height: 424,
+    transparent: false,
+    frame: true,
     resizable: false
   });
   mainWindow.loadURL(`file://${__dirname}/build/index.html`);
