@@ -69,7 +69,7 @@ export default class extends React.Component {
 
     componentDidMount() {
         (async () => {
-            if (!localStorage.getItem(localStorageKey)) localStorage.setItem(localStorageKey, "[]") && console.log(1)
+            if (!localStorage.getItem(localStorageKey)) localStorage.setItem(localStorageKey, "[]")
 
             this.setState({
                 musicLibrary: await getMusicLibraries(),
@@ -111,14 +111,11 @@ export default class extends React.Component {
                         const prevBaseDirs = JSON.parse(
                             localStorage.getItem(localStorageKey)
                         )
-                        if (!prevBaseDirs.find(baseDirPath)) {
+                        if (!prevBaseDirs.find(x => baseDirPath.includes(x))) {
                             localStorage.setItem(
                                 localStorageKey,
                                 JSON.stringify(
-                                    JSON.parse(
-                                        localStorage.getItem(localStorageKey)
-                                    )
-                                        .concat(baseDirPath)
+                                    prevBaseDirs.concat(baseDirPath)
                                 )
                             )
                             await this.state.syncBaseDir()

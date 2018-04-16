@@ -29,7 +29,7 @@ export default class extends React.Component {
                         <div
                             key={xi}
                         >
-                            <strong>{x.dirName}</strong>
+                            <strong>{x.directoryName}</strong>
                             {x.musicList && x.musicList.map((y, yi) => 
                                 <div
                                     key={yi}
