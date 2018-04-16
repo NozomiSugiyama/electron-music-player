@@ -7,12 +7,17 @@ export default class extends React.Component {
     componentDidMount() {}
     render() {
         const {
-            musicLibrary,
+            musicLibraries,
             musicApi: {
                 addBaseDir,
+            },
+            currentAudio,
+            audioApi: {
+                setMusic,
+                getAudio,
             }
         } = this.props
-        console.log(musicLibrary, "test")
+        console.log(musicLibraries, "test")
         return(
             <div>
                 <span>test</span>
@@ -25,16 +30,20 @@ export default class extends React.Component {
                 </button>
                 <div>
                 {
-                    musicLibrary.map((x, xi) =>
+                    musicLibraries.map((musicLibrary, i) =>
                         <div
-                            key={xi}
+                            key={i}
                         >
-                            <strong>{x.directoryName}</strong>
-                            {x.musicList && x.musicList.map((y, yi) => 
+                            <strong>{musicLibrary.directoryName}</strong>
+                            {musicLibrary.musicList && musicLibrary.musicList.map((music, i2) => 
                                 <div
-                                    key={yi}
+                                    key={i2}
+                                    onClick={async _ => {
+                                        await setMusic({music})
+                                        currentAudio.play()
+                                    }}
                                 >
-                                    {y.filePath}
+                                    {music.filePath}
                                 </div>
                             )}
                         </div>

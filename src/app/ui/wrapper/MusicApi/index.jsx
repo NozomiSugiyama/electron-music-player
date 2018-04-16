@@ -63,7 +63,7 @@ export default class extends React.Component {
 
     componentWillMount() {
         this.setState({
-            musicLibrary: []
+            musicLibraries: []
         })
     }
 
@@ -72,16 +72,16 @@ export default class extends React.Component {
             if (!localStorage.getItem(localStorageKey)) localStorage.setItem(localStorageKey, "[]")
 
             this.setState({
-                musicLibrary: await getMusicLibraries(),
+                musicLibraries: await getMusicLibraries(),
                 syncBaseDir: async () => {
-                    const musicLibrary = await getMusicLibraries()
+                    const musicLibraries = await getMusicLibraries()
                     await setState(
                         this,
                         {
-                            musicLibrary: musicLibrary
+                            musicLibraries
                         }
                     )
-                    return musicLibrary
+                    return musicLibraries
                 }
             })
         })()
@@ -98,7 +98,7 @@ export default class extends React.Component {
         } = this.props
 
         return render({
-            musicLibrary: this.state.musicLibrary,
+            musicLibraries: this.state.musicLibraries,
             musicApi: {
                 syncBaseDir: this.state.syncBaseDir,
                 addBaseDir: async () => {

@@ -1,14 +1,14 @@
-import React      from "react"
-import { remote } from 'electron'
-import fs         from 'fs' 
-import setState   from "app/util/setState"
+import React       from "react"
+import { remote }  from 'electron'
+import fs          from 'fs' 
+import forceUpdate from "app/util/forceUpdate"
 
 
 export default class extends React.Component {
 
     componentWillMount() {
         this.setState({
-            audio: undefined
+            audio: new Audio()
         })
     }
 
@@ -27,29 +27,17 @@ export default class extends React.Component {
         } = this.props
 
         return render({
-            plaingAudio: this.state.audio,
+            currentAudio: this.state.audio,
             audioApi: {
-                setMusic: ({
+                setMusic: async ({
                     music,
-                }) => setState(
-                    this,
-                    {
-                        audio: music.audio.cloneNode()
-                    }
-                ),
-                playMusic: async ({
-                    music
                 }) => {
-                    if (music)
-                        await setState(
-                            this,
-                            {
-                                audio: music.audio.cloneNode()
-                            }
-                        )
-                    this.state.music.play()
-                },
-                pauseMusic: () => this.state.audio.pause()
+                    console.log(music.src)
+                    this.state.audio.src = music.audio.src
+                    await forceUpdate(this)
+
+                    return this.state.audio
+                }
             },
             ...props
         })
