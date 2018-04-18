@@ -1,0 +1,11 @@
+.Host {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.Host > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

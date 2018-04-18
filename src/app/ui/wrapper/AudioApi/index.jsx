@@ -42,7 +42,6 @@ export default class extends React.Component {
                             currentMusic: music
                         }
                     )
-
                     return this.state.audio
                 }
             },

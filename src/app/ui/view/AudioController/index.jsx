@@ -1,12 +1,28 @@
-import React      from "react"
-import classNames from "app/ui/view/MainLayout/classNames"
+import React        from "react"
+import MaterialIcon from "app/ui/view/common/MaterialIcon"
+
+import classNames from "app/ui/view/AudioController/classNames"
 
 export default ({
-    currentMusic,
-    currentAudio
+    audio,
+    audioApi,
+    className,
+    ...props
 }) => 
     <div
-        className={classNames.Host}
+        className={[className, classNames.Host].join(" ")}
+        {...props}
     >
-        <div></div>
+        <MaterialIcon>
+            {"skip_previous"}
+        </MaterialIcon>
+        <MaterialIcon
+            onClick={_ => audio.paused ? audio.play() : audio.pause()}
+        >
+            {audio.paused ? "play_arrow" : "pause"}
+        </MaterialIcon>
+        <MaterialIcon
+        >
+            {"skip_next"}
+        </MaterialIcon>
     </div>

@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.Host {
+    display        : inline-flex;
+    align-items    : center;
+    justify-content: center;
+    font-family    : "Material Icons";
+    font-weight    : normal;
+    font-style     : normal;
+    text-align     : center;
+    text-rendering : optimizeLegibility;
+    text-transform : none;
+    letter-spacing : normal;
+    word-wrap      : normal;
+    white-space    : nowrap;
+    direction      : ltr;
+    user-select    : none;
+    font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

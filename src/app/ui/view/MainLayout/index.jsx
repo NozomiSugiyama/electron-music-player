@@ -1,55 +1,59 @@
-import React      from "react"
+import React           from "react"
+import MaterialIcon    from "app/ui/view/common/MaterialIcon"
+import AudioController from "app/ui/view/AudioController"
+import MusicController from "app/ui/view/MusicController"
+
 import classNames from "app/ui/view/MainLayout/classNames"
 
 export default class extends React.Component {
-    componentWillMount() {}
-    componentDidMount() {}
+    componentWillMount() {
+        this.setState({
+            musicControllerIsView: true,
+        })
+    }
+
     render() {
         const {
             musicLibraries,
-            musicApi: {
-                addBaseDir,
-            },
+            musicApi,
             currentAudio,
             currentMusic,
-            audioApi: {
-                setMusic,
-            }
+            audioApi,
         } = this.props
 
         return(
             <div
                 className={classNames.Host}
             >
-                <span>test</span>
-                <button
-                    onClick={async _ => {
-                        await addBaseDir()
-                    }}
+                <header
+                    className={classNames.Header}
                 >
-                    select base dir
-                </button>
+                    <MaterialIcon>{"volume_up"}</MaterialIcon>
+                    <MaterialIcon
+                        onClick={_ => 
+                            this.setState({
+                                musicControllerIsView: !this.state.musicControllerIsView
+                            })
+                        }
+                    >
+                        {"queue_music"}
+                    </MaterialIcon>
+                </header>
                 <div>
-                {
-                    musicLibraries.map((musicLibrary, i) =>
-                        <div
-                            key={i}
-                        >
-                            <strong>{musicLibrary.directoryName}</strong>
-                            {musicLibrary.musicList && musicLibrary.musicList.map((music, i2) => 
-                                <div
-                                    key={i2}
-                                    onClick={async _ => {
-                                        await setMusic({music})
-                                    }}
-                                >
-                                    {music.filePath}
-                                </div>
-                            )}
-                        </div>
-                    )
-                }
+                    <MusicController
+                        className={
+                            [
+                                classNames.MusicController,
+                                this.state.musicControllerIsView ? classNames.View
+                              :                                    classNames.Hidden
+                            ].join(" ")
+                        }
+                    />
                 </div>
+                <AudioController
+                    audio={currentAudio}
+                    audioApi={audioApi}
+                />
             </div>
         )
     }
