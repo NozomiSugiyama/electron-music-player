@@ -1,6 +1,5 @@
 .Host {
     background: linear-gradient(to bottom, #da4453, #89216b); 
-    padding-bottom: 5.5rem;
     box-sizing: border-box;
     height: 100%;    
     display: flex;
@@ -8,33 +7,80 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    box-shadow: 0 0 8px rgba(0,0,0,.4);
+    justify-content: space-around;
+    padding-top: 3rem;
 }
 
-.Body > * {
-    width: 10rem;
-    height: 10rem;
+.Body {
+    display: flex;
+    width: 100%;
+}
+
+.Body > :nth-child(2) {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.Body > :nth-child(2) > :nth-child(1) {
+    width: 12rem;
+    height: 12rem;
+    box-shadow: 0 0 32px rgba(0,0,0,.4);
     border-radius: 50%;
     background: black;
+    position: relative;
+    animation-name: rotation;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+
+.Body > :nth-child(2)  > :nth-child(2) {
+    transition: all .3s ease-in-out;
+    position: absolute;
+    font-size: 2rem;
+    background-color: black;
 }
 
 .Footer {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    bottom: 5.5rem;
-    margin-bottom: .5rem;
-    text-align: center;
-    color: white;
+    display: flex;    
+    align-items: flex-end;
+    justify-content: space-around;
+    width: 100%;
 }
 
-.Footer > :nth-child(1) {
+.IconButton {
+    font-size: 1.5rem;
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: white;
+    margin-bottom: .4rem;
+}
+
+.Info > :nth-child(1) {
     font-size: 0.75rem;
     letter-spacing: .05rem;
     margin-bottom: .25rem;
 }
 
-.Footer > :nth-child(2) {
+.Info > :nth-child(2) {
     font-size: 1.5rem;
     letter-spacing: .1rem;
 }
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+  
+    to {
+        transform: rotate(360deg);
+    }
+  }

@@ -1,6 +1,5 @@
 import React           from "react"
-import MaterialIcon    from "app/ui/view/common/MaterialIcon"
-import AudioController from "app/ui/view/AudioController"
+import IconButton      from "app/ui/view/common/IconButton"
 import MusicController from "app/ui/view/MusicController"
 
 import classNames from "app/ui/view/MainLayout/classNames"
@@ -28,8 +27,8 @@ export default class extends React.Component {
                 <header
                     className={classNames.Header}
                 >
-                    <MaterialIcon>{"volume_up"}</MaterialIcon>
-                    <MaterialIcon
+                    <IconButton>{"volume_up"}</IconButton>
+                    <IconButton
                         onClick={_ => 
                             this.setState({
                                 musicControllerIsView: !this.state.musicControllerIsView
@@ -37,10 +36,12 @@ export default class extends React.Component {
                         }
                     >
                         {"queue_music"}
-                    </MaterialIcon>
+                    </IconButton>
                 </header>
                 <div>
                     <MusicController
+                        audio={currentAudio}
+                        audioApi={audioApi}
                         className={
                             [
                                 classNames.MusicController,
@@ -50,10 +51,6 @@ export default class extends React.Component {
                         }
                     />
                 </div>
-                <AudioController
-                    audio={currentAudio}
-                    audioApi={audioApi}
-                />
             </div>
         )
     }

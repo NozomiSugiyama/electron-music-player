@@ -1,0 +1,8 @@
+.Host {
+    font-size: 2rem;
+    border-radius: 50%;
+    box-sizing: border-box;
+    padding: .5rem;
+    cursor: pointer;
+    color: white;
+}
