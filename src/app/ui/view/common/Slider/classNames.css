@@ -1,0 +1,121 @@
+.Host {
+    min-width  : 12rem;
+    width      : calc(100% - 16px);
+    height     : 42px;
+    margin     : 2px 8px;
+    display    : flex;
+    position   : relative;
+    align-items: center;
+    cursor     : pointer;
+}
+
+.Border {
+    top             : 22px;
+    width           : 100%;
+    position        : absolute;
+    height          : 2px;
+    background-color: #9E9E9E;
+    transition      : all .3s ease-out;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
+}
+
+.Host:hover .Dot {
+    width        : 2px;
+    height       : 2px;
+    background   : #444;
+    position     : relative;
+    z-index      : 1;
+    top          : 0;
+    border-radius: 50%;
+}
+
+.Circle {
+    background-color          : white;
+    width                     : 20px;
+    height                    : 20px;
+    border-radius             : 50%;
+    left                      : 0;
+    top                       : 12px;
+    position                  : absolute;
+    z-index                   : 1;
+    cursor                    : pointer;
+    box-sizing                : border-box;
+    transform                 : translate(-50%, 0) scale(0.7);
+    transition                : left 0.3s ease-out, width 0.2s ease-out, height 0.2s ease-out, transform 0.2s ease-out, background-color 0.4s ease-out;
+    transition-timing-function: ease-out;
+}
+
+.RippleCircle {
+    background-color: rgba(0, 0, 0, .3);
+    width           : 32px;
+    height          : 32px;
+    position        : absolute;
+    border-radius   : 50%;
+    top             : 6px;    
+    transition      : left 0.3s ease-out, width 0.2s ease-out, height 0.2s ease-out, transform 0.4s ease-out;
+    transform       : translate(-50%, 0) scale(0.4);
+    animation       : none;
+}
+
+.LeftBorder {
+    top             : 22px;    
+    background-color: white;
+    position        : absolute;
+    left            : 0;
+    width           : 0;
+    height          : 2px;
+    transition      : all .3s ease-out;
+}
+
+.Host:hover .Border {
+    background-color: #7b7b7b;
+}
+
+.Host:hover > .Circle {
+    transform: translate(-50%, 0) scale(0.8);
+}
+
+.Host:hover > .RippleCircle {
+    transform: translate(-50%, 0) scale(1);
+    animation: ripple 0.4s ease-out .3s infinite alternate;
+}
+
+.Circle:active,
+.Circle.Active {
+    transform: translate(-50%, 0) scale(1) !important;
+}
+
+.RippleCircle.Active {
+    transform: translate(-50%, 0) scale(0.4) !important;
+    animation: none !important;
+}
+
+.Host.Disabled .LeftBorder {
+    background-color: #9E9E9E;
+}
+
+.Host.Disabled .RippleCircle,
+.Host.Disabled .Dot{
+    display: none;
+}
+
+.Host.Disabled .Circle {
+    transform       : translate(-50%, 0) scale(0.8);
+    background-color: #fafbfd;
+    border          : solid 2px #bdbdbd;
+}
+
+.Host.Disabled .Border {
+    background-color: #BDBDBD;
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, 0) scale(0.9);
+    }
+    100% {
+        transform: translate(-50%, 0) scale(1);
+    }
+}

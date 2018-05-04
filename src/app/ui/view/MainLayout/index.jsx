@@ -7,7 +7,7 @@ import classNames from "app/ui/view/MainLayout/classNames"
 export default class extends React.Component {
     componentWillMount() {
         this.setState({
-            musicControllerIsView: true,
+            musicControllerisTop: false,
         })
     }
 
@@ -31,7 +31,7 @@ export default class extends React.Component {
                     <IconButton
                         onClick={_ => 
                             this.setState({
-                                musicControllerIsView: !this.state.musicControllerIsView
+                                musicControllerisTop: !this.state.musicControllerisTop
                             })
                         }
                     >
@@ -42,13 +42,7 @@ export default class extends React.Component {
                     <MusicController
                         audio={currentAudio}
                         audioApi={audioApi}
-                        className={
-                            [
-                                classNames.MusicController,
-                                this.state.musicControllerIsView ? classNames.View
-                              :                                    classNames.Hidden
-                            ].join(" ")
-                        }
+                        top={this.state.musicControllerisTop}
                     />
                 </div>
             </div>
